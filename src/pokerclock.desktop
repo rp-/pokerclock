@@ -1,0 +1,8 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Pokerclock
+Exec=pokerclock
+Icon=pokerclock
+Type=Application
+Comment=Clock for Poker Texas HE
+Categories=Qt;Game;

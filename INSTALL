@@ -1,0 +1,33 @@
+===== REQUIREMENT =====
+
+- libqt >= 4.2.0
+- cmake >= 2.4.0
+
+===== QUICK INSTALL =====
+
+In Root :
+- ./install.sh (Use Manual Install for Windows)
+
+===== MANUAL INSTALL =====
+
+- mkdir build
+- cd build
+- cmake .. (for debug : -DDEBUG=1) (for windows with MinGW : -G "MinGW Makefiles")
+- make
+
+In root :
+- make install
+
+===== RUN =====
+
+For run :
+- pokerclock
+
+===== DOWNLOAD =====
+
+- http://xes.sytes.net/softwares
+- svn co svn://xes.sytes.net/pokerclock
+
+===== ABOUT =====
+
+E-Mail : pinon.pierre@gmail.com
