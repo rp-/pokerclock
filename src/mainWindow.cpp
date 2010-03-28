@@ -537,6 +537,7 @@ void		mainWindow::timer_timeout()
 
 	//Verification d'activation des ReBuy
 	if ( chkReBuy->isChecked() )
+	{
 		if ( timeReBuy->time() <= timeTotal )
 		{
 			lblSpinReBuy->setEnabled ( false );
@@ -547,9 +548,11 @@ void		mainWindow::timer_timeout()
 			lblSpinReBuy->setEnabled ( true );
 			spinReBuy->setEnabled ( true );
 		}
+	}
 
 	//Verification de d'activation des AddOn
 	if ( chkAddOn->isChecked() )
+	{
 		if ( timeAddOn->time() <= timeTotal && timeTotal <= timeAddOn2->time() )
 		{
 			lblSpinAddOn->setEnabled ( true );
@@ -560,6 +563,7 @@ void		mainWindow::timer_timeout()
 			lblSpinAddOn->setEnabled ( false );
 			spinAddOn->setEnabled ( false );
 		}
+	}
 
 	//Calcul du temps ecoule pour la blind et ante
 	timeLevelInc = timeLevelInc.addSecs ( timeLevelStart.secsTo ( QTime::currentTime() ) );
