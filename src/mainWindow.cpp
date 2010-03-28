@@ -247,11 +247,11 @@ void		mainWindow::on_toolStop_clicked ()
 	spinPlayers->setValue ( spinPlayersTotal->value() );
 
 	lblTotalTime->setText ( "00:00:00" );
-	lblBlinds->setText ( "0/0" );
+	lblCurrentBlinds->setText ( "0/0" );
 	lblTime->setText ( "00:00" );
 	lblLevel->setText ( "0" );
 	lblLevel2->setText ( "0" );
-	lblAntes->setText ( "0" );
+	lblCurrentAntes->setText ( "0" );
 	slideTime->setValue ( 0 );
 	spinReBuy->setValue ( 0 );
 	spinAddOn->setValue ( 0 );
@@ -729,9 +729,9 @@ void		mainWindow::change_level ( int level, bool noPause )
 
 	lblLevel->setText ( QString::number ( level + 1 ) );
 	lblLevel2->setText ( lblLevel->text() );
-	lblBlinds->setText ( QString::number ( getValue ( level, SMALL_VALUE ) ) + "/" + QString::number ( getValue ( level, BIG_VALUE ) ) );
+	lblCurrentBlinds->setText ( QString::number ( getValue ( level, SMALL_VALUE ) ) + "/" + QString::number ( getValue ( level, BIG_VALUE ) ) );
 	if ( chkAnte->isChecked() )
-		lblAntes->setText ( QString::number ( getValue ( level, ANTE_VALUE ) ) );
+		lblCurrentAntes->setText ( QString::number ( getValue ( level, ANTE_VALUE ) ) );
 }
 
 void		mainWindow::sound()
