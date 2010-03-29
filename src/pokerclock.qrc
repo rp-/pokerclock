@@ -1,9 +1,7 @@
- <!DOCTYPE RCC><RCC version="1.0">
- <qresource prefix="/">
+<RCC>
+  <qresource prefix="/">
     <file>images/_top.png</file>
     <file>images/_left.png</file>
-    <file>images/_bottom_left.png</file>
-    <file>images/_bottom_right.png</file>
     <file>images/menu1.png</file>
     <file>images/menu2.png</file>
     <file>images/dollars.png</file>
@@ -17,5 +15,5 @@
     <file>images/stop.png</file>
     <file>images/prev.png</file>
     <file>images/next.png</file>
- </qresource>
- </RCC>
+  </qresource>
+</RCC>
