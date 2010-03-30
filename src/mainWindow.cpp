@@ -729,9 +729,20 @@ void		mainWindow::change_level ( int level, bool noPause )
 
 	lblLevel->setText ( QString::number ( level + 1 ) );
 	lblLevel2->setText ( lblLevel->text() );
+	if( level > 0)
+		lblBeforeBlinds->setText( QString::number ( getValue ( level - 1, SMALL_VALUE ) ) + "/" + QString::number ( getValue ( level - 1, BIG_VALUE ) ) );
 	lblCurrentBlinds->setText ( QString::number ( getValue ( level, SMALL_VALUE ) ) + "/" + QString::number ( getValue ( level, BIG_VALUE ) ) );
+	if( level < NUM_LEVELS - 1)
+		lblAfterBlinds->setText ( QString::number ( getValue ( level + 1, SMALL_VALUE ) ) + "/" + QString::number ( getValue ( level + 1, BIG_VALUE ) ) );
+
 	if ( chkAnte->isChecked() )
+	{
+		if( level > 0 )
+			lblBeforeAntes->setText ( QString::number ( getValue ( level - 1, ANTE_VALUE ) ) );
 		lblCurrentAntes->setText ( QString::number ( getValue ( level, ANTE_VALUE ) ) );
+		if( level < NUM_LEVELS - 1)
+			lblAfterAntes->setText ( QString::number ( getValue ( level, ANTE_VALUE ) ) );
+	}
 }
 
 void		mainWindow::sound()
