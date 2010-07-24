@@ -1,15 +1,15 @@
-This package was debianized by xes <pinon.pierre@gmail.com> on
+This package was debianized by Peinthor Rene <peinthor@gmail.com> on
 Sun, 25 Feb 2007 23:56:10 +0100.
 
-It was downloaded from http://xes.sytes.net/download
+It was downloaded from git.oldsch00l.com
 
-Upstream Author: xes <pinon.pierre@gmail.com>
+Upstream Author: xes <pinon.pierre@gmail.com>, Peinthor Rene <peinthor@gmail.com>
 
 Copyright:
 
 License:
 
-The Debian packaging is (C) 2007, xes <pinon.pierre@gmail.com> and
+The Debian packaging is (C) 2010, Peinthor Rene <peinthor@gmail.com> and
 is licensed under the GPL, see `/usr/share/common-licenses/GPL'.
 
 # Please also look if there are files or directories which have a
