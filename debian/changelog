@@ -1,3 +1,21 @@
+pokerclock (1.0.5-7peinthor1) lucid; urgency=low
+
+  * fix dh helper scripts
+
+ -- Peinthor Rene <peinthor@gmail.com>  Sun, 06 Jun 2010 16:38:44 +0200
+
+pokerclock (1.0.5-6peinthor1) lucid; urgency=low
+
+  * add build dependencies
+
+ -- Peinthor Rene <peinthor@gmail.com>  Sun, 06 Jun 2010 15:48:24 +0200
+
+pokerclock (1.0.5-5peinthor1) lucid; urgency=low
+
+  * fix unknown commands
+
+ -- Peinthor Rene <peinthor@gmail.com>  Sun, 06 Jun 2010 14:17:11 +0200
+
 pokerclock (1.0.5-3) lucid; urgency=low
 
   * fix distroseries

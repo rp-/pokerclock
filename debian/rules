@@ -25,7 +25,7 @@ build-stamp: configure-stamp
 
 	# Add here commands to compile the package.
 	mkdir debbuild
-	cd debbuild && cmake .. && $(MAKE)
+	cd debbuild && cmake -DDEB_BUILD=ON .. && $(MAKE)
 	#docbook-to-man debian/pokerclock.sgml > pokerclock.1
 
 	touch $@
