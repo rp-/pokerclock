@@ -1217,12 +1217,11 @@
     </item>
    </layout>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
   <widget class="QDockWidget" name="dockMenu">
    <property name="minimumSize">
     <size>
      <width>326</width>
-     <height>511</height>
+     <height>656</height>
     </size>
    </property>
    <property name="autoFillBackground">
@@ -1261,6 +1260,9 @@
        </property>
        <item>
         <widget class="QToolButton" name="toolQuit">
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
          <property name="toolTip">
           <string>Quit (q)</string>
          </property>
@@ -1309,6 +1311,19 @@
         </widget>
        </item>
        <item>
+        <spacer>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
         <widget class="QToolButton" name="toolAbout">
          <property name="toolTip">
           <string>About (a)</string>
@@ -1331,19 +1346,6 @@
          </property>
         </widget>
        </item>
-       <item>
-        <spacer>
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>40</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
       </layout>
      </item>
      <item>
@@ -1355,7 +1357,7 @@
         <number>0</number>
        </property>
        <item>
-        <widget class="QToolButton" name="toolStart">
+        <widget class="QToolButton" name="toolPlayPause">
          <property name="toolTip">
           <string>Start (p)</string>
          </property>
@@ -1373,39 +1375,10 @@
           </size>
          </property>
          <property name="shortcut">
-          <string>P</string>
+          <string>Space</string>
          </property>
          <property name="checkable">
           <bool>false</bool>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QToolButton" name="toolPause">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-         <property name="toolTip">
-          <string>Pause (p)</string>
-         </property>
-         <property name="text">
-          <string>P</string>
-         </property>
-         <property name="icon">
-          <iconset resource="pokerclock.qrc">
-           <normaloff>:/images/pause.png</normaloff>:/images/pause.png</iconset>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>25</width>
-           <height>25</height>
-          </size>
-         </property>
-         <property name="shortcut">
-          <string>P</string>
-         </property>
-         <property name="checkable">
-          <bool>true</bool>
          </property>
         </widget>
        </item>
@@ -1589,7 +1562,7 @@
      <item>
       <widget class="QTabWidget" name="tabAllSettings">
        <property name="currentIndex">
-        <number>0</number>
+        <number>5</number>
        </property>
        <widget class="QWidget" name="tabGame">
         <attribute name="title">
@@ -1647,6 +1620,13 @@
                 <property name="buttonSymbols">
                  <enum>QAbstractSpinBox::PlusMinus</enum>
                 </property>
+                <property name="time">
+                 <time>
+                  <hour>0</hour>
+                  <minute>1</minute>
+                  <second>0</second>
+                 </time>
+                </property>
                 <property name="maximumTime">
                  <time>
                   <hour>0</hour>
@@ -1669,13 +1649,6 @@
                 </property>
                 <property name="calendarPopup">
                  <bool>false</bool>
-                </property>
-                <property name="time">
-                 <time>
-                  <hour>0</hour>
-                  <minute>1</minute>
-                  <second>0</second>
-                 </time>
                 </property>
                </widget>
               </item>
@@ -1999,15 +1972,15 @@
               <property name="buttonSymbols">
                <enum>QAbstractSpinBox::PlusMinus</enum>
               </property>
-              <property name="displayFormat">
-               <string>hh:mm</string>
-              </property>
               <property name="time">
                <time>
                 <hour>0</hour>
                 <minute>0</minute>
                 <second>0</second>
                </time>
+              </property>
+              <property name="displayFormat">
+               <string>hh:mm</string>
               </property>
              </widget>
             </item>
@@ -2161,15 +2134,15 @@
               <property name="buttonSymbols">
                <enum>QAbstractSpinBox::PlusMinus</enum>
               </property>
-              <property name="displayFormat">
-               <string>hh:mm</string>
-              </property>
               <property name="time">
                <time>
                 <hour>0</hour>
                 <minute>0</minute>
                 <second>0</second>
                </time>
+              </property>
+              <property name="displayFormat">
+               <string>hh:mm</string>
               </property>
              </widget>
             </item>
@@ -2214,15 +2187,15 @@
               <property name="buttonSymbols">
                <enum>QAbstractSpinBox::PlusMinus</enum>
               </property>
-              <property name="displayFormat">
-               <string>hh:mm</string>
-              </property>
               <property name="time">
                <time>
                 <hour>0</hour>
                 <minute>0</minute>
                 <second>0</second>
                </time>
+              </property>
+              <property name="displayFormat">
+               <string>hh:mm</string>
               </property>
              </widget>
             </item>
@@ -2579,6 +2552,10 @@
   <action name="menuFullScreen">
    <property name="checkable">
     <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="pokerclock.qrc">
+     <normaloff>:/images/fullscreen.png</normaloff>:/images/fullscreen.png</iconset>
    </property>
    <property name="text">
     <string>FullScreen</string>

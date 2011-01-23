@@ -39,8 +39,7 @@ class mainWindow: public QMainWindow, public Ui::mainWindow
 		void		on_toolQuit_clicked();
 		void		on_toolFullScreen_clicked();
 		void		on_toolAbout_clicked();
-		void		on_toolStart_clicked();
-		void		on_toolPause_clicked();
+		void		on_toolPlayPause_clicked();
 		void		on_toolStop_clicked();
 		void		on_toolLevelMinus_clicked();
 		void		on_toolLevelPlus_clicked();
@@ -99,6 +98,8 @@ class mainWindow: public QMainWindow, public Ui::mainWindow
 		QTime	timeLevelStart;
 		QTime	timePause;
 		prizeWindow *frmPrize;
+		bool m_bRunningGame;
+		bool m_bGamePaused;
 		QShortcut* scFullscreen;
 };
 

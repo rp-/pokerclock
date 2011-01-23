@@ -66,7 +66,7 @@ mainWindow::mainWindow ( QWidget *parent ) : QMainWindow ( parent )
 	timeAddOn2->setTime ( DEFAULT_TIME_ADDON2 );
 
 	//shortcuts
-	toolPause->setFocus();
+	toolPlayPause->setFocus();
 	scFullscreen = new QShortcut(QKeySequence(Qt::Key_F11), this);
 	scFullscreen->setContext(Qt::ApplicationShortcut);
 	QObject::connect(scFullscreen, SIGNAL(activated()), toolFullScreen, SLOT(click()));
@@ -88,6 +88,7 @@ mainWindow::mainWindow ( QWidget *parent ) : QMainWindow ( parent )
 	tableValues->setHorizontalHeaderItem ( ANTE_VALUE, newItem );
 	
 	setDefaultValues();
+	m_bRunningGame = false;
 	
 	//Combo prizes
 	int	prizes[NUM_PRIZES2] = TAB_DEFAULT_PRIZES;
@@ -150,7 +151,7 @@ void		mainWindow::on_toolAbout_clicked()
 	QMessageBox::about ( this, tr ( "About " ) + NAME_APP, ABOUT_TEXT );
 }
 
-void		mainWindow::on_toolStart_clicked ( )
+void		mainWindow::on_toolPlayPause_clicked ( )
 {
 	int lineErr;
 
@@ -168,73 +169,81 @@ void		mainWindow::on_toolStart_clicked ( )
 		return;
 	}
 
-	spinPlayers->setMaximum ( spinPlayersTotal->value() );
-
-	//Mise a jour des widgets de l'interface
-	toolStart->setEnabled ( false );
-	toolPause->setEnabled ( true );
-	toolStop->setEnabled ( true );
-	lblTimeLevels->setEnabled ( false );
-	timeLevels->setEnabled ( false );
-	lblSpinPrize->setEnabled ( false );
-	spinPrize->setEnabled ( false );
-	lblSpinStack->setEnabled ( false );
-	spinStack->setEnabled ( false );
-	spinPlayers->setEnabled ( true );
-	spinPlayersTotal->setEnabled ( false );
-	lblChkAnte->setEnabled ( false );
-	chkAnte->setEnabled ( false );
-	lblChkReBuy->setEnabled ( false );
-	chkReBuy->setEnabled ( false );
-	lblChkAddOn->setEnabled ( false );
-	chkAddOn->setEnabled ( false );
-
-	tabValues->setEnabled ( false );
-	tabPrizes->setEnabled ( false );
-
-	slideTime->setEnabled ( true );
-
-	if ( chkReBuy->isChecked() )
+	if( !m_bRunningGame )
 	{
-		lblTimeReBuy->setEnabled ( false );
-		timeReBuy->setEnabled ( false );
-		lblReBuy->setText ( "0" );
-	}
-	if ( chkAddOn->isChecked() )
-	{
-		lblTimeAddOn->setEnabled ( false );
-		timeAddOn->setEnabled ( false );
-		lblTimeAddOn2->setEnabled ( false );
-		timeAddOn2->setEnabled ( false );
-		lblAddOn->setText ( "0" );
-	}
+		spinPlayers->setMaximum ( spinPlayersTotal->value() );
 
-	//Mise en route des compteurs
-	timeTotalStart = QTime::currentTime ();
-	timeLevelStart = QTime::currentTime ();
-	change_level ( level );
-	timer->start();
-	timer_timeout();
-}
+		//Mise a jour des widgets de l'interface
+		toolPlayPause->setIcon(QIcon(":/images/pause.png"));
+		toolStop->setEnabled ( true );
+		lblTimeLevels->setEnabled ( false );
+		timeLevels->setEnabled ( false );
+		lblSpinPrize->setEnabled ( false );
+		spinPrize->setEnabled ( false );
+		lblSpinStack->setEnabled ( false );
+		spinStack->setEnabled ( false );
+		spinPlayers->setEnabled ( true );
+		spinPlayersTotal->setEnabled ( false );
+		lblChkAnte->setEnabled ( false );
+		chkAnte->setEnabled ( false );
+		lblChkReBuy->setEnabled ( false );
+		chkReBuy->setEnabled ( false );
+		lblChkAddOn->setEnabled ( false );
+		chkAddOn->setEnabled ( false );
 
-void		mainWindow::on_toolPause_clicked ( )
-{
-	if ( toolPause->isChecked() )
-	{
-		timePause = QTime::currentTime();
-		timer->stop();
+		tabValues->setEnabled ( false );
+		tabPrizes->setEnabled ( false );
+
+		slideTime->setEnabled ( true );
+
+		if ( chkReBuy->isChecked() )
+		{
+			lblTimeReBuy->setEnabled ( false );
+			timeReBuy->setEnabled ( false );
+			lblReBuy->setText ( "0" );
+		}
+		if ( chkAddOn->isChecked() )
+		{
+			lblTimeAddOn->setEnabled ( false );
+			timeAddOn->setEnabled ( false );
+			lblTimeAddOn2->setEnabled ( false );
+			timeAddOn2->setEnabled ( false );
+			lblAddOn->setText ( "0" );
+		}
+
+		//Mise en route des compteurs
+		timeTotalStart = QTime::currentTime ();
+		timeLevelStart = QTime::currentTime ();
+		change_level ( level );
+		timer->start();
+		timer_timeout();
+		m_bRunningGame = true;
+		m_bGamePaused = false;
 	}
 	else
 	{
-		timeTotalStart = timeTotalStart.addSecs ( timePause.secsTo ( QTime::currentTime() ) );
-		timeLevelStart = timeLevelStart.addSecs ( timePause.secsTo ( QTime::currentTime() ) );
-		timer->start();
+		if ( !m_bGamePaused )
+		{
+			timePause = QTime::currentTime();
+			timer->stop();
+			m_bGamePaused = true;
+			toolPlayPause->setIcon(QIcon(":/images/play.png"));
+		}
+		else
+		{
+			timeTotalStart = timeTotalStart.addSecs ( timePause.secsTo ( QTime::currentTime() ) );
+			timeLevelStart = timeLevelStart.addSecs ( timePause.secsTo ( QTime::currentTime() ) );
+			timer->start();
+			m_bGamePaused = false;
+			toolPlayPause->setIcon(QIcon(":/images/pause.png"));
+		}
 	}
 }
 
 void		mainWindow::on_toolStop_clicked ()
 {
 	timer->stop();
+	m_bRunningGame = false;
 
 	//Remplissage du tableau de prizes
 	frmPrize->lblInitial->setText ( QString::number ( spinPlayersTotal->value() * spinPrize->value() ) );
@@ -264,9 +273,7 @@ void		mainWindow::on_toolStop_clicked ()
 	level = 0;
 
 	//Mise a jour des widgets de l'interface
-	toolStart->setEnabled ( true );
-	toolPause->setEnabled ( false );
-	toolPause->setChecked ( false );
+	toolPlayPause->setEnabled ( true );
 	toolStop->setEnabled ( false );
 	toolLevelMinus->setEnabled ( false );
 	toolLevelPlus->setEnabled ( false );
@@ -453,7 +460,7 @@ void		mainWindow::on_slideTime_sliderMoved ( int value )
 void		mainWindow::on_slideTime_sliderReleased ()
 {
 	on_slideTime_sliderMoved ( slideTime->value() );
-	if ( !toolPause->isChecked() )
+	if ( !m_bGamePaused )
 		timer->start();
 }
 
@@ -719,8 +726,8 @@ void		mainWindow::change_level ( int level, bool noPause )
 {
 	if ( chkPause->isChecked() && level != 0 && !noPause )
 	{
-		toolPause->setChecked ( true );
-		on_toolPause_clicked ( );
+		m_bGamePaused = false;
+		on_toolPlayPause_clicked();
 	}
 
 	//Grise les boutons si necessaire
