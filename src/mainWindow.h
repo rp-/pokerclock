@@ -99,6 +99,7 @@ class mainWindow: public QMainWindow, public Ui::mainWindow
 		QTime	timeLevelStart;
 		QTime	timePause;
 		prizeWindow *frmPrize;
+		QShortcut* scFullscreen;
 };
 
 #endif

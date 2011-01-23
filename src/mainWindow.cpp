@@ -65,6 +65,12 @@ mainWindow::mainWindow ( QWidget *parent ) : QMainWindow ( parent )
 	timeAddOn->setTime ( DEFAULT_TIME_ADDON );
 	timeAddOn2->setTime ( DEFAULT_TIME_ADDON2 );
 
+	//shortcuts
+	toolPause->setFocus();
+	scFullscreen = new QShortcut(QKeySequence(Qt::Key_F11), this);
+	scFullscreen->setContext(Qt::ApplicationShortcut);
+	QObject::connect(scFullscreen, SIGNAL(activated()), toolFullScreen, SLOT(click()));
+
 	//Chargement des parametres
 	loadConfig();
 
