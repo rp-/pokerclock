@@ -1,3 +1,23 @@
+pokerclock (1.0.5-3) lucid; urgency=low
+
+  * fix distroseries
+
+ -- Peinthor Rene <peinthor@gmail.com>  Sat, 5 Jun 2010 19:51:10 +0200
+
+pokerclock (1.0.5-2) unstable; urgency=low
+
+  * new test package
+
+ -- Peinthor Rene <peinthor@gmail.com>  Sat, 5 Jun 2010 10:51:10 +0200
+
+
+pokerclock (1.0.5-1) unstable; urgency=low
+
+  * new package maintainer
+
+ -- Peinthor Rene <peinthor@gmail.com>  Sat, 5 Jun 2010 10:51:10 +0200
+
+
 pokerclock (1.0.4-1) unstable; urgency=low
 
   * Pokerclock

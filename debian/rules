@@ -10,16 +10,6 @@
 #export DH_VERBOSE=1
 
 
-
-
-CFLAGS = -Wall -g
-
-ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
-	CFLAGS += -O0
-else
-	CFLAGS += -O2
-endif
-
 configure: configure-stamp
 configure-stamp:
 	dh_testdir
@@ -34,7 +24,8 @@ build-stamp: configure-stamp
 	dh_testdir
 
 	# Add here commands to compile the package.
-	$(MAKE)
+	mkdir debbuild
+	cd debbuild && cmake .. && $(MAKE)
 	#docbook-to-man debian/pokerclock.sgml > pokerclock.1
 
 	touch $@
@@ -45,7 +36,8 @@ clean:
 	rm -f build-stamp configure-stamp
 
 	# Add here commands to clean up after the build process.
-	-$(MAKE) clean
+	#-$(MAKE) clean
+	rm -Rf debbuild
 
 	dh_clean 
 
@@ -56,7 +48,7 @@ install: build
 	dh_installdirs
 
 	# Add here commands to install the package into debian/pokerclock.
-	$(MAKE) DESTDIR=$(CURDIR)/debian/pokerclock install
+	cd debbuild && $(MAKE) DESTDIR=$(CURDIR)/debian/pokerclock install
 
 
 # Build architecture-independent files here.
