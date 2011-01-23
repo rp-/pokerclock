@@ -2596,7 +2596,7 @@
   <customwidget>
    <class>qtPie</class>
    <extends>QDial</extends>
-   <header>../../src/qtpie.h</header>
+   <header>src/qtpie.h</header>
   </customwidget>
  </customwidgets>
  <resources>
