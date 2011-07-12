@@ -2,9 +2,11 @@ Source: pokerclock
 Section: games
 Priority: optional
 Maintainer: Peinthor Rene <peinthor@gmail.com>
+Standards-Version: 3.8.4.0
+Build-Depends: debhelper (>= 5), cmake (>= 2.4.2), libqt4-dev (>= 4.2.0)
 
 Package: pokerclock
 Architecture: any
 Depends: libqt4-core (>= 4.2.0-1), libqt4-gui (>= 4.2.0-1)
 Description: Poker clock for Tournament !
- 
+
